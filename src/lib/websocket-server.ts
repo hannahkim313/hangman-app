@@ -1,18 +1,16 @@
 'use server';
 
-import { WebSocketServer } from 'ws';
+import { WebSocketServer, WebSocket } from 'ws';
 
 export const create = async (): Promise<void> => {
-  // TODO make env var
-  return new WebSocketServer({ port: *PORT* });
+  return new WebSocketServer({ port: process.env.WEBSOCKET_SERVER_PORT });
 };
 
 export const send = async (
   webSocketServer: WebSocketServer,
   data: object
 ): Promise<void> => {
-  // TODO Change so client has declared type instead of any
-  webSocketServer.clients.forEach((client) =>
+  webSocketServer.clients.forEach((client: WebSocket) =>
     client.send(JSON.stringify(data))
   );
 };

@@ -3,6 +3,13 @@ export interface UserData {
   username: string;
 }
 
-// Define a Player interface
+export interface Player extends UserData {
+  isGuessing: boolean;
+  lettersGuessed: string[];
+  livesLeft: number;
+}
 
-// Define a GameState interface
+export interface GameState {
+  selectedWord: string;
+  isGameOver: boolean;
+}
